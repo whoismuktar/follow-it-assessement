@@ -41,10 +41,10 @@ export default createStore({
   },
   mutations: {
     setReadMails(state, data) {
-      state.readMails = [...state.readMails, ...data]
+      state.readMails = [...new Set([...state.readMails, ...data])];
     },
     setArchiveMails(state, data) {
-      state.archivedMails = [...state.archivedMails, ...data]
+      state.archivedMails = [...new Set([...state.archivedMails, ...data])];
     },
     resetModal(state) {
       state.dialogMailActive = false;
