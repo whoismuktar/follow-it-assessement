@@ -9,7 +9,7 @@
 <script>
 import SideBar from "./components/SideBar"
 import Modal from "./components/Modal"
-import { mapState } from 'vuex'
+import { mapState } from "vuex"
 
 export default {
   components: { 

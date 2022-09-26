@@ -48,21 +48,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      selectedEmails: 0,
       mails: [
         {
           id: 1,
-          title: "this is title 1",
-          message: "this is message 2",
+          title: "This is title 1",
+          body: "This is body 2",
         },
         {
           id: 2,
-          title: "this is title 1",
-          message: "this is message 2",
+          title: "This is title 1",
+          body: "This is body 2",
         },
       ],
       selections: [],
@@ -70,8 +69,11 @@ export default {
   },
   computed: {
     ...mapState([
-        "readMails"
+      "readMails"
     ]),
+    selectedEmails() {
+      return this.selections.length;
+    },
     pageName() {
       return this.$route.name;
     },
