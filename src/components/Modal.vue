@@ -1,18 +1,27 @@
 <template>
   <div class="close__decoy" @click="closeModal"></div>
   <div class="app__modal">
-    <span class="close__modal" @click="closeModal">
-        Close (Esc)
-    </span>
 
-    <button>Mark as read (r)</button>
+    <div class="modal__top">
+        <div class="close__modal" @click="closeModal">
+            Close (Esc)
+        </div>
 
-    <button>Archive (a)</button>
+        <button class="mark__read" @click="markSelectionAsRead">Mark as read (r)</button>
+
+        <button class="mark__archive" @click="markSelectionAsArchive">Archive (a)</button>
+    </div>
+
+    <div class="modal__body">
+        <h2 class="modal__body__title">{{ dialogMail.title }}</h2>
+        <div class="modal__body__body">{{ dialogMail.body }}</div>
+    </div>
+
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex"
 export default {
   name: "modal",
   methods: {
@@ -52,5 +61,13 @@ export default {
     width: 100%;
     height: 100vh;
     background: #00000091;
+}
+
+.modal__body__title {
+    margin-bottom: 20px;
+}
+
+.mark__read {
+    margin-right: 10px;
 }
 </style>
