@@ -40,6 +40,17 @@ export default {
         "dialogMail"
     ])
   },
+  created() {
+    window.addEventListener('keydown', (e) => {
+      if (!this.selections.length) return
+
+      if (e.key == 'r') {
+        this.markSelectionAsRead()
+      } else if (e.key == 'a') {
+        this.markSelectionAsArchive()
+      }
+    });
+  }
 }
 </script>
 
