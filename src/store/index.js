@@ -2,6 +2,18 @@ import { createStore } from "vuex"
 
 export default createStore({
   state: {
+    mails: [
+      {
+        id: 1,
+        title: "This is title 1",
+        body: "This is body 2",
+      },
+      {
+        id: 2,
+        title: "This is title 2",
+        body: "This is body 2",
+      },
+    ],
     menuItems: [
       {
         title: "Inbox",
