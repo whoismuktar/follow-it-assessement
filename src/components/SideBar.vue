@@ -8,7 +8,7 @@
         :class="[`sidebar__wrapper__item__${menu.id}`]"
         @click="gotoPath(menu)"
       >
-        {{ menu.title }}
+        {{ menu.title }} ({{ getOwnCount(menu.id) }})
       </div>
 
       <div class="spacer"></div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "sidebar",
   data() {
@@ -34,12 +34,26 @@ export default {
   computed: {
     ...mapState([
       "menuItems"
-    ])
+    ]),
+    ...mapGetters([
+        "readCount",
+        "archiveCount",
+    ]),
   },
   methods: {
     gotoPath(menu) {
-        this.$router.push({name: menu.path})
-    }
+      this.$router.push({name: menu.path})
+    },
+    getOwnCount(id) {
+      switch (id) {
+        case "inbox":
+            return this.readCount || 0; 
+        case "archive":
+            return this.archiveCount || 0;
+        default:
+            break;
+      }
+    },
   },
 };
 </script>

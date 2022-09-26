@@ -32,6 +32,12 @@ export default createStore({
     dialogMail: {},
   },
   getters: {
+    readCount(state) {
+      return state.readMails.length;
+    },
+    archiveCount(state) {
+      return state.archivedMails.length;
+    },
   },
   mutations: {
     setReadMails(state, data) {
