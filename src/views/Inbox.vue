@@ -6,7 +6,7 @@
 
     <div class="selection__action">
       <span class="selection__action__child select__all">
-        <input type="checkbox" name="selectAll" id="selectAll" />
+        <input v-model="markAll" type="checkbox" name="selectAll" id="selectAll" />
       </span>
 
       <span class="selection__action__child mark__read">
@@ -52,24 +52,14 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      mails: [
-        {
-          id: 1,
-          title: "This is title 1",
-          body: "This is body 2",
-        },
-        {
-          id: 2,
-          title: "This is title 1",
-          body: "This is body 2",
-        },
-      ],
+      markAll: false,
       selections: [],
     };
   },
   computed: {
     ...mapState([
-      "readMails"
+      "mails",
+      "readMails",
     ]),
     selectedEmails() {
       return this.selections.length;
@@ -77,6 +67,15 @@ export default {
     pageName() {
       return this.$route.name;
     },
+  },
+  watch: {
+    markAll(val) {
+      if(val) {
+        this.selections = this.mails.map(mail => mail.id)
+      } else {
+        this.selections = []
+      }
+    }
   },
   methods: {
     markSelectionAsRead() {
