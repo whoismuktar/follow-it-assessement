@@ -18,3 +18,23 @@ html, body {
 .spacer {
     flex: 1;
 }
+
+.app__body {
+    padding: 40px 10% 40px 30%;
+}
+.page__title {
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+input[type=checkbox] {
+   cursor: pointer;
+}
+
+button {
+    border: 1px solid #d5d1d1;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}

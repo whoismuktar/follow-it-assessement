@@ -1,6 +1,8 @@
 <template>
   <side-bar />
-  <router-view/>
+    <main class="app__body">
+      <router-view />
+    </main>
 </template>
 
 <script>

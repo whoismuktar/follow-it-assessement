@@ -1,5 +1,5 @@
 <template>
-  <div class="archive"></div>
+  <div class="page__archive"></div>
 </template>
 
 <script>

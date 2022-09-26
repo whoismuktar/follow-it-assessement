@@ -54,7 +54,7 @@ export default {
   top: 0;
 }
 .sidebar__wrapper {
-    height: 90%;
+    height: 95%;
     display: flex;
     flex-direction: column;
 }
