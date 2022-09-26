@@ -1,0 +1,20 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.dflex {
+    display: flex;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.flex-column {
+    justify-content: space-between;
+}
+
+.spacer {
+    flex: 1;
+}
