@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/archive',
     name: 'archive',
-    component: () => import('../views/Inbox.vue')
+    component: () => import('../views/Archive.vue')
   }
 ]
 

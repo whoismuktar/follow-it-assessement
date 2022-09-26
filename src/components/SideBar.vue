@@ -6,6 +6,7 @@
         :key="index"
         class="sidebar__wrapper__item"
         :class="[`sidebar__wrapper__item__${menu.id}`]"
+        @click="gotoPath(menu)"
       >
         {{ menu.title }}
       </div>
@@ -22,23 +23,23 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "sidebar",
   data() {
     return {
-      menuItems: [
-        {
-          title: "Inbox",
-          path: "inbox",
-          id: "inbox",
-        },
-        {
-          title: "Archive",
-          path: "archive",
-          id: "archive",
-        },
-      ],
+      
     };
+  },
+  computed: {
+    ...mapState([
+      "menuItems"
+    ])
+  },
+  methods: {
+    gotoPath(menu) {
+        this.$router.push({name: menu.path})
+    }
   },
 };
 </script>

@@ -10,44 +10,86 @@
       </span>
 
       <span class="selection__action__child mark__read">
-        <button id="mark__read">Mark as read (r)</button>
+        <button id="mark__read" @click="markSelectionAsRead">
+          Mark as read (r)
+        </button>
       </span>
 
       <span class="selection__action__child mark__archive">
-        <button id="mark__archive">Archive (a)</button>
+        <button id="mark__archive" @click="markSelectionAsArchive">
+          Archive (a)
+        </button>
       </span>
     </div>
 
     <div class="mails">
-      <div v-for="(menu, index) in mails" :key="index" class="mails__item mail">
+      <div
+        v-for="(mail, index) in mails"
+        :key="index"
+        class="mails__item mail"
+        :class="[`mail${isEmailRead(mail)}`]"
+      >
         <span class="select__mail">
           <input
             v-model="selections"
             type="checkbox"
-            :value="menu.id"
+            :value="mail.id"
             name="selectMail"
             id="selectMail"
           />
         </span>
 
-        <div class="mail__title">This is a temporal title</div>
+        <div class="mail__title" @click="openInModal(mail)">
+          {{ mail.title }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       selectedEmails: 0,
-      mails: [{id: 1}, {id: 2}],
+      mails: [
+        {
+          id: 1,
+          title: "this is title 1",
+          message: "this is message 2",
+        },
+        {
+          id: 2,
+          title: "this is title 1",
+          message: "this is message 2",
+        },
+      ],
       selections: [],
     };
   },
   computed: {
+    ...mapState([
+        "readMails"
+    ]),
     pageName() {
       return this.$route.name;
+    },
+  },
+  methods: {
+    markSelectionAsRead() {
+      this.$store.dispatch("setReadMails", this.selections);
+    },
+    markSelectionAsArchive() {
+      this.$store.dispatch("setArchiveMails", this.selections);
+    },
+    openInModal(mail) {
+      this.$store.dispatch("openMailDialog", mail);
+    },
+    isEmailRead(mail) {
+      if (this.readMails.includes(mail.id)) {
+        return "__read"
+      }
     },
   },
 };
@@ -73,9 +115,17 @@ export default {
   padding: 10px;
   border-radius: 6px;
   background-color: #eaeaea;
-  cursor: pointer;
   margin-bottom: 20px;
 }
+
+.mails__item .mail__title {
+  cursor: pointer;
+}
+
+.mails__item.mail__read {
+  opacity: 0.5
+}
+
 .mails__item .select__mail {
   margin-right: 20px;
 }
